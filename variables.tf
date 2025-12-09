@@ -7,6 +7,7 @@ variable "aws" "region" {
 variable "environment" {
   decription = "Environment name"
   type       = string
+  default    = "dev"
 }
 
 variable "vpc_cidr" {
@@ -40,7 +41,7 @@ variable "instance_count" {
 }
 
 variable "app_port" {
-  description = "Port for Demo-APplication"}
+  description = "Port for Application"}
   type        = number
   default     = 3000
 }

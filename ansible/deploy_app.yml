@@ -1,0 +1,21 @@
+---
+- name: Configure and Deploy Application on EC2 Instances
+  hosts: app_servers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Ensure Python is available
+      raw: sudo apt update && sudo apt install -y python3
+      when: ansible_python_interpreter is not defined
+
+    - name: Copy application setup script
+      copy:
+        src: files/userdata.sh
+        dest: /tmp/userdata.sh
+        mode: '0755'
+
+    - name: Execute application setup script
+      shell: /tmp/userdata.sh | sudo -u root bash -s -- --app_port "{{ app_port }}" --environment "{{ environment }}"
+      args:
+        creates: /etc/systemd/system/demo-app.service

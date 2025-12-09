@@ -64,6 +64,29 @@ pipeline {
                 '''
             }
         }
+        stage('Ansible Configuration') {
+            steps {
+                sh '''
+                    cd environment/${ENVIRONMENT}
+                    terraform output -json instance_private_ip > ../../ansible/inventory_data.json
+                '''
+                script {
+                    def iplist = readJSON(file: 'ansible/inventory_data.json')
+                    def inventory = "[app_servers]\n"
+                    ipList.each { ip ->
+                        inventory += "${ip} ansible_user=ubuntu\n"
+                   }
+                   writeFile file: 'ansible/inventory.ini', text: inventory
+               }
+               sh '''
+                   ansible-playbook \
+                       -i ansible/inventory.ini \
+                       --private-key /var/lib/jenkins/.ssh/id_rsa \
+                       -e "app_port=${APP_PORT}" \
+                       ansible/deploy_app.yml
+               '''
+            }
+       }
         
         stage('Infrastructure Validation') {
             steps {
