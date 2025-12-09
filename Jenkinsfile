@@ -156,7 +156,7 @@ pipeline {
                 
                 Deployment outputs saved to deployment-outputs.json
                 """,
-                to: 'user@example.com'
+                to: 'koche.akash@gmail.com'
             )
         }
         failure {
@@ -171,7 +171,7 @@ pipeline {
                 
                 Check Jenkins logs for details.
                 """,
-                to: 'user@example.com'
+                to: 'koche.akash@gmail.com'
             )
         }
     }

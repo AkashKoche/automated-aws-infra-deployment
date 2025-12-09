@@ -13,7 +13,7 @@ cat > package.json << EOF
 {
   "name": "demo-app",
   "version": "1.0.0",
-  "description": "FAANG+ Interview Demo Application",
+  "description": "Demo Application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-      <title>FAANG+ Demo App</title>
+      <title>Demo App</title>
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
     <body>
       <div class="container">
         <h1>🚀 Automated AWS Infrastructure Deployment</h1>
-        <p>FAANG+ Interview Project Demo</p>
+        <p>Project Demo Application</p>
 
         <div class="info-box">
           <h2>🏗️ Infrastructure Details</h2>
@@ -98,6 +98,8 @@ app.get('/', (req, res) => {
             <h3>Terraform</h3>
             <p>IaC • Modules</p>
           </div>
+          <div class="tech-item">
+            <h3>Ansible Infrastructure Provisioning</h3>
           <div class="tech-item">
             <h3>Jenkins</h3>
             <p>CI/CD • Automation</p>
@@ -132,16 +134,17 @@ app.get('/health', (req, res) => {
 app.get('/api/info', (req, res) => {
   res.json({
     project: 'Automated AWS Infrastructure Deployment',
-    purpose: 'FAANG+ Interview Demonstration',
+    purpose: 'Application Demonstration',
     features: [
       'Terraform Infrastructure as Code',
+      'Ansible Configuration',
       'Jenkins CI/CD Pipeline',
       'AWS VPC with Public/Private Subnets',
       'Auto Scaling Group',
       'Application Load Balancer',
       'Health Monitoring'
     ],
-    technologies: ['AWS', 'Terraform', 'Jenkins', 'Node.js', 'Express']
+    technologies: ['AWS', 'Terraform', 'Ansible',  'Jenkins', 'Node.js', 'Express']
   });
 });
 
@@ -155,7 +158,7 @@ npm install
 
 cat > /etc/systemd/system/demo-app.service << EOF
 [Unit]
-Description=FAANG+ Demo Application
+Description=Demo Application
 After=network.target
 
 [Service]
